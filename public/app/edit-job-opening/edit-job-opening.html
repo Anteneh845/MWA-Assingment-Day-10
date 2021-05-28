@@ -1,0 +1,30 @@
+<h1> Edit Job Opening</h1>
+
+<form name="editJobOpeningCtrl.form" ng-submit="editJobOpeningCtrl.updateJobHandler()">
+    <div style="font-size: 24px;color: red"> {{editJobOpeningCtrl.error}} </div>
+    <div>
+        <label> Title </label><br/>
+        <input type="text" ng-model="editJobOpeningCtrl.job.title" ng-required="true"/>
+    </div>
+
+    <div>
+        <label> Description </label><br/>
+        <textarea rows="3" ng-model="editJobOpeningCtrl.job.description" ng-required="true"></textarea>
+    </div>
+    <div>
+        <label> Salary </label> <br/>
+        <input type="number" ng-model="editJobOpeningCtrl.job.salary" value="editJobOpeningCtrl.job.salary" ng-required="true"/>
+    </div>
+    <div>
+        <label> Experience </label><br/>
+        <input type="number" ng-model="editJobOpeningCtrl.job.experience" ng-required="true"/>
+    </div>
+    <div>
+        <label> Skills <monospace> Add skills separated by comma</monospace> </label><br/>
+        <input type="text" ng-model="editJobOpeningCtrl.job.skills" ng-required="true"/>
+    </div>
+    <br/>
+    <div>
+        <input type="submit" value="submit" class="btn-primary"/>
+    </div>
+</form>

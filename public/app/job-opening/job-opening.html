@@ -1,0 +1,30 @@
+<h1> {{jobOpeningCtrl.job.title}} </h1>
+<p> {{jobOpeningCtrl.job.description}}</p>
+<div> Date Posted : {{jobOpeningCtrl.job.postDate | date}}</div>
+<div> Salary : {{jobOpeningCtrl.job.salary | currency}}</div>
+<div> Skills required : <span ng-repeat="skill in jobOpeningCtrl.job.skills"> {{skill}}  </span></div>
+<hr/>
+<div ng-show="jobOpeningCtrl.job.location != null">
+    <b> Location data </b>
+    <div> Street : {{jobOpeningCtrl.job.location.street}}</div>
+    <div> State : {{jobOpeningCtrl.job.location.state}}</div>
+    <div> City : {{jobOpeningCtrl.job.location.city}}</div>
+    <div> ZipCode : {{jobOpeningCtrl.job.location.zipCode}}</div>
+    <div class="m-3">
+        <a href="/#!/jobs/{{jobOpeningCtrl.job._id}}/location/edit" class="text-decoration-none p-2 btn-primary">
+            Update location &emsp;
+        </a>
+    </div>
+    <br/>
+</div>
+<div>
+    <button ng-show="jobOpeningCtrl.job.location==null" ng-click="jobOpeningCtrl.addJobLocationHandler(jobOpeningCtrl.job._id)" class="btn-primary">
+        Add location
+    </button>
+    &emsp;
+    <button ng-click="jobOpeningCtrl.editJobHandler(jobOpeningCtrl.job._id)" class="btn-primary"> Edit this Job</button>
+    &emsp;
+    <button ng-click="jobOpeningCtrl.deleteJobHandler(jobOpeningCtrl.job._id)" class="btn-primary"> Delete this Job</button>
+    &emsp;
+    <button ng-click="jobOpeningCtrl.goBackHandler()" class="btn-primary"> Go back</button>
+</div>

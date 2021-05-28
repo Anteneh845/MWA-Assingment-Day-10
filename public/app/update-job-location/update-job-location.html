@@ -1,0 +1,23 @@
+<form name="updateJobLocationCtrl.form" ng-submit="updateJobLocationCtrl.updateLocationHandler()">
+    <b> Update Location data </b>
+    <div>
+        <label> Street </label><br/>
+        <input type="text" ng-model="updateJobLocationCtrl.location.street" ng-required="true"/>
+    </div>
+    <div>
+        <label> State </label><br/>
+        <input type="text" ng-model="updateJobLocationCtrl.location.state" ng-required="true"/>
+    </div>
+    <div>
+        <label> City </label><br/>
+        <input type="text" ng-model="updateJobLocationCtrl.location.city" ng-required="true"/>
+    </div>
+    <div>
+        <label> Zip code </label><br/>
+        <input type="number" ng-model="updateJobLocationCtrl.location.zipCode" ng-required="true"/>
+    </div>
+    <br/>
+    <div>
+        <input type="submit" value="submit" class="btn-primary"/>
+    </div>
+</form>

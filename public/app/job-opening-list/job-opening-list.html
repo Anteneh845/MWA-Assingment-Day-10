@@ -1,0 +1,10 @@
+<div class="d-inline-block">
+    <h2 class="d-inline-block"> Job opening list </h2> &emsp; &emsp;
+    <button  ng-click="jobOpeningListCtrl.navigateToCreateJob()" class="btn-primary"> Create Job Opening </button>
+</div>
+<ul>
+    <li ng-repeat="job in jobOpeningListCtrl.jobs">
+        <h3><a  class="text-decoration-none" href="/#!/jobs/{{job._id}}"> {{job.title }} </a></h3>
+        <p> {{job.description}} </p>
+    </li>
+</ul>
