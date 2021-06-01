@@ -1,20 +1,24 @@
 <!Doctype html>
-<html ng-app="jobSearch">
+<html ng-app="meanGuitars">
     <head>
-        <title> Job search</title>
-        <link href="./styles/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <title> Guitar Types and Collections </title>
+        <link href="styles/bootstrap.min.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
-        <div ng-view class="m-5"></div>
+        <nav-bar> </nav-bar>
+        <div class="card-body" ng-view> </div>
         <script src="../node_modules/angular/angular.js"></script>
         <script src="../node_modules/angular-route/angular-route.js"></script>
-        <script src="./app/app.js"></script>
-        <script src="./app/data-factory/data-factory.js"></script>
-        <script src="./app/job-opening-list/job-opening-list.controller.js"></script>
-        <script src="./app/add-job-opening/add-job-opening.controller.js"></script>
-        <script src="./app/job-opening/job-opening.controller.js"></script>
-        <script src="./app/edit-job-opening/edit-job-opening.controller.js"></script>
-        <script src="./app/add-job-location/add-job-location.controller.js"></script>
-        <script src="./app/update-job-location/update-job-location.controller.js"></script>
+        <script src="app/app.js"></script>
+        <script src="app/data-factory/guitar-data-factory.js"></script>
+        <script src="app/guitar-list/guitar-list.controller.js"></script>
+        <script src="app/add-guitar/add-guitar.controller.js"></script>
+        <script src="app/guitar-detail/guitar-detail.controller.js"></script>
+        <script src="app/login/login.controller.js"></script>
+        <script src="app/register/register.controller.js"></script>
+        <script src="app/custom-directives/guitar-card/guitar-card.directive.js"></script>
+        <script src="app/data-factory/auth-data.factory.js"></script>
+        <script src="app/data-factory/user-data.factory.js"></script>
+        <script src="app/nav-bar/nav-bar.directive.js"></script>
     </body>
 </html>

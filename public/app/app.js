@@ -1,39 +1,53 @@
 angular
-    .module("jobSearch", ["ngRoute"])
-    .config(config)
+    .module("meanGuitars", ["ngRoute"])
+    .config(appConfig);
 
-function config($routeProvider) {
+const checkIfLoggedIn = (UserDataFactory, $rootScope, requireAuth = false) => {
+    return UserDataFactory
+        .getProfile()
+        .then(user => {
+            $rootScope.currentUser = user;
+        }).catch(() => {
+            console.log("Was here")
+            if (requireAuth) return `/login`
+        });
+}
+
+const resolveRedirectTo = (requireAuth) => ["UserDataFactory", "$rootScope", (UserDataFactory, $rootScope) => checkIfLoggedIn(UserDataFactory, $rootScope, requireAuth)];
+
+function appConfig($routeProvider, $locationProvider) {
+    $locationProvider.hashPrefix("");
     $routeProvider
         .when("/", {
-            templateUrl: "app/job-opening-list/job-opening-list.html",
-            controller: "JobOpeningListController",
-            controllerAs: "jobOpeningListCtrl"
+            templateUrl: "app/guitar-list/guitar-list.html",
+            controller: "GuitarListController",
+            controllerAs: "guitarListCtrl",
         })
-        .when("/jobs/create", {
-            templateUrl: "app/add-job-opening/add-job-opening.html",
-            controller: "AddJobOpeningController",
-            controllerAs: "addJobOpeningCtrl"
+        .when("/guitars/new", {
+            templateUrl: "app/add-guitar/add-guitar.html",
+            controller: "AddGuitarController",
+            controllerAs: "addGuitarCtrl",
+            resolveRedirectTo: resolveRedirectTo(true)
         })
-        .when("/jobs/:jobId", {
-            templateUrl: "app/job-opening/job-opening.html",
-            controller: "JobOpeningController",
-            controllerAs: "jobOpeningCtrl"
-        }).when("/jobs/:jobId/location", {
-            templateUrl: "app/add-job-location/add-job-location.html",
-            controller: "AddJobLocationController",
-            controllerAs: "addJobLocationCtrl"
+        .when("/login", {
+            templateUrl: "app/login/login.html",
+            controller: "LoginController",
+            controllerAs: "loginCtrl",
         })
-        .when("/jobs/:jobId/location/edit", {
-            templateUrl: "app/update-job-location/update-job-location.html",
-            controller: "UpdateJobLocationController",
-            controllerAs: "updateJobLocationCtrl"
+        .when("/register", {
+            templateUrl: "app/register/register.html",
+            controller: "RegisterController",
+            controllerAs: "registerCtrl",
         })
-        .when("/jobs/:jobId/edit", {
-            templateUrl: "app/edit-job-opening/edit-job-opening.html",
-            controller: "EditJobOpeningController",
-            controllerAs: "editJobOpeningCtrl"
+        .when("/guitars/:guitarId", {
+            templateUrl: "app/guitar-detail/guitar-detail.html",
+            controller: "GuitarDetailController",
+            controllerAs: "guitarDetailCtrl",
+            resolveRedirectTo: resolveRedirectTo()
+
         })
         .otherwise({
             redirectTo: "/"
         })
 }
+

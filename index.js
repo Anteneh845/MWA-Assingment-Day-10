@@ -1,18 +1,23 @@
 const express = require("express");
 const app = express();
-const path = require("path");
-const PORT = 3000;
+const path = require("path")
+const PORT = 4000;
 
-require("./api/configs/database-config");
-const jobOpeningRoutes = require("./api/routes/job-opening.route")
+require("./api/config/db-config");
+const guitarRoutes = require("./api/routes/guitar.route");
+const userRoutes = require("./api/routes/user.route");
 
 app.use(express.json());
-app.use("/api", jobOpeningRoutes);
+app.use("/api", (req, res, next) => {
+    console.log("/api", req.url, " => ", req.method);
+    next();
 
-app.use(express.static(path.join(__dirname, "public")));
-app.use("/node_modules", express.static(path.join(__dirname, "node_modules")));
+});
+app.use("/api", userRoutes);
+app.use("/api", guitarRoutes);
 
+app.use(express.static(path.join(__dirname, "public")))
+app.use("/node_modules", express.static(path.join(__dirname, "node_modules")))
 app.listen(PORT, () => {
-    console.log("App started at " + 3000);
+    console.log("APp started at " + PORT);
 })
-
